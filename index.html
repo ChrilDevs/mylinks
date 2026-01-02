@@ -1,139 +1,300 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chril Links</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
-        integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&family=Saira:wght@800&display=swap"
-        rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chril</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Poppins', sans-serif;
-        }
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet">
 
-        body {
-            height: 100vh;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
 
-        h2 {
-            font-family: 'Saira', sans-serif;
-            font-weight: 600;
-            text-transform: uppercase;
-            color: white;
-            text-shadow: 0 0 1px transparent, 0 1px 2px rgb(0 0 0 / 50%);
-        }
-
-        body >img {
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-        }
-
-        section {
-            display: grid;
-            place-items: center;
-            position: absolute;
-            inset: 0;
-            overflow-y: scroll;
-        }
-        
-        section div {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 10px;
-            justify-content: center;
-            align-items: center;
-        }
-
-        section > div {
-            padding: 100px 10px;
-        }
-
-        section div img {
-            width: 100px;
-            aspect-ratio: 1;
-            border-radius: 50%;
-            box-shadow: 0 0 8px 1px lightblue;
-        }
-
-        a {
-            display: flex;
-            width: 100%;
-            align-items: center;
-            justify-content: center;
-            border: 1.5px solid white;
-            padding: 10px;
-            color: white;
-            text-decoration: none;
-            gap: 20px;
-            align-items: center;
-            border-radius: 4px;
-            transition-duration: 200ms;
-        }
-
-        a:hover {
-            background: white;
-            color: #0f172a;
-        }
-
-        a i {
-            font-size: 1.3em;
-        }
+body {
+    background: #2b2b2b;
+    color: white;
+    overflow: hidden;
+}
 
 
-    </style>
+#intro {
+    position: fixed;
+    inset: 0;
+    background: #2b2b2b;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    z-index: 10;
+}
+
+#intro h1 {
+    font-size: 3rem;
+    letter-spacing: 6px;
+    animation: introIn 1s ease forwards;
+}
+
+#intro p {
+    opacity: 0.6;
+    letter-spacing: 2px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes introIn {
+    from { transform: translateY(-40px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulse {
+    0%,100% { opacity: 0.4; }
+    50% { opacity: 1; }
+}
+
+
+#site {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: scale(1.05);
+    pointer-events: none;
+}
+
+#site.active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: all;
+    transition: all 1s ease;
+}
+
+.container {
+    width: 100%;
+    max-width: 420px;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+
+.logo {
+    width: 140px;
+    animation: logoIn 1s ease forwards;
+}
+
+@keyframes logoIn {
+    from { transform: translateY(-30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+h2 {
+    letter-spacing: 3px;
+}
+
+
+.links {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.links a {
+    background: #3a3a3a;
+    border: 1px solid #555;
+    padding: 14px;
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    opacity: 0;
+    animation: linkIn 0.6s ease forwards;
+}
+
+.links a:nth-child(1) { animation-delay: 0.4s; }
+.links a:nth-child(2) { animation-delay: 0.6s; }
+
+@keyframes linkIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.links a:hover {
+    background: white;
+    color: #2b2b2b;
+    transform: translateY(-2px);
+}
+
+
+#audio-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #3a3a3a;
+    border: 1px solid #555;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+#audio-btn i {
+    font-size: 1.1rem;
+}
+
+#site.active #audio-btn {
+    opacity: 1;
+}
+
+footer {
+    font-size: 0.8rem;
+    opacity: 0.6;
+}
+
+
+#toast {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ff4c4c;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 500;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 999;
+    animation: none;
+}
+
+@keyframes toastIn {
+    from { opacity: 0; transform: translate(-50%, -20px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes toastOut {
+    from { opacity: 1; transform: translate(-50%, 0); }
+    to { opacity: 0; transform: translate(-50%, -20px); }
+}
+</style>
 </head>
 
 <body>
-    <img src="https://cdn.discordapp.com/attachments/1193946679620161617/1234812162904686642/2023-07-31_16.20.04.png?ex=663217f1&is=6630c671&hm=a61b1362ad4efff48cf6acf333b2b5a7cb3aaf771c3009c24cc49b809cd3c253&" alt="bg" />
-    <section>
-        <div>
-            <img src="https://cdn.discordapp.com/attachments/1193946679620161617/1234811942363987969/def_pic_chril-photoaidcom-cropped_2.png?ex=663217bc&is=6630c63c&hm=b2f67c0422c4f0e9551f6186c71e15608592d9c34a206f635404c127af2c36af&" alt="dp" />
-            <h2>CHRIL</h2>
-            <div>
-                <a href="https://discord.gg/2gQAtMWft2">
-                    <i class="fa-brands fa-discord"></i>
-                    <p>Chrilgamer Community, My discord server
-                    </p>
-                </a>
-                <a href="https://discord.gg/2gQAtMWft2">
-                    <i class="fa-solid fa-shield-halved"></i>
-                    <p>Raxus Home, Sr. Moderator</p>
-                </a>
-                <a href="https://discord.gg/MYAnQR4Jkb">
-                    <i class="fa-solid fa-gamepad"></i>
-                    <p>SkyMc, Minecraft Server owner</p>
-                </a>
-                <a href="https://discord.gg/2gQAtMWft2">
-                    <i class="fa-brands fa-youtube"></i>
-                    <p>ObsMc, Creator</p>
-                </a>
-                
-        </div>
-        </div>
-    </section>
-</body>
 
+
+<div id="intro">
+    <h1>CHRIL</h1>
+    <p>PRESS ENTER</p>
+</div>
+
+
+<div id="site">
+
+    <div id="audio-btn">
+        <i class="fa-solid fa-volume-high"></i>
+    </div>
+
+    <div class="container">
+        <img src="logochril.png" class="logo" alt="Chril Logo">
+        <h2>Chril Site</h2>
+
+        <div class="links">
+
+            <a href="#" id="logmaster-btn">
+                <i class="fa-solid fa-globe"></i> LogMaster
+            </a>
+
+            <a href="https://discord.gg/6w6CA4UR" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-discord"></i> Raxus
+            </a>
+        </div>
+
+        <footer>© 2026 ChrilSite</footer>
+    </div>
+</div>
+
+
+<div id="toast">Non disponibile</div>
+
+
+<audio id="bg-audio" loop>
+    <source src="audio.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const intro = document.getElementById("intro");
+const site = document.getElementById("site");
+const audio = document.getElementById("bg-audio");
+const audioBtn = document.getElementById("audio-btn");
+const icon = audioBtn.querySelector("i");
+
+let audioOn = true;
+
+
+function startAudio() {
+    if(audio.paused){
+        audio.volume = 0.4;
+        audio.play().catch(()=>{});
+    }
+}
+
+
+function enterSite() {
+    startAudio(); 
+    intro.style.opacity = "0";
+    setTimeout(() => {
+        intro.style.display = "none";
+        site.classList.add("active");
+    }, 800);
+}
+
+
+intro.addEventListener("click", enterSite);
+document.addEventListener("keydown", e => { if(e.key==="Enter") enterSite(); });
+
+
+audioBtn.addEventListener("click", ()=>{
+    if(audioOn){
+        audio.pause();
+        icon.className = "fa-solid fa-volume-xmark";
+    } else {
+        audio.play();
+        icon.className = "fa-solid fa-volume-high";
+    }
+    audioOn = !audioOn;
+});
+
+
+const logBtn = document.getElementById("logmaster-btn");
+const toast = document.getElementById("toast");
+
+logBtn.addEventListener("click", (e)=>{
+    e.preventDefault(); 
+    toast.style.animation = "toastIn 0.5s forwards";
+    setTimeout(()=>{
+        toast.style.animation = "toastOut 0.5s forwards";
+    }, 2000); 
+});
+</script>
+
+</body>
 </html>
