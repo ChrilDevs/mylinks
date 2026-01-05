@@ -164,36 +164,10 @@ h2 {
     opacity: 1;
 }
 
+
 footer {
     font-size: 0.8rem;
     opacity: 0.6;
-}
-
-
-#toast {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #ff4c4c;
-    color: white;
-    padding: 12px 25px;
-    border-radius: 8px;
-    font-weight: 500;
-    opacity: 0;
-    pointer-events: none;
-    z-index: 999;
-    animation: none;
-}
-
-@keyframes toastIn {
-    from { opacity: 0; transform: translate(-50%, -20px); }
-    to { opacity: 1; transform: translate(-50%, 0); }
-}
-
-@keyframes toastOut {
-    from { opacity: 1; transform: translate(-50%, 0); }
-    to { opacity: 0; transform: translate(-50%, -20px); }
 }
 </style>
 </head>
@@ -218,11 +192,12 @@ footer {
         <h2>Chril Site</h2>
 
         <div class="links">
-
-            <a href="#" id="logmaster-btn">
+          
+            <a href="https://logmastersite.vercel.app/" target="_blank" rel="noopener noreferrer">
                 <i class="fa-solid fa-globe"></i> LogMaster
             </a>
 
+     
             <a href="https://discord.gg/6w6CA4UR" target="_blank" rel="noopener noreferrer">
                 <i class="fa-brands fa-discord"></i> Raxus
             </a>
@@ -231,9 +206,6 @@ footer {
         <footer>© 2026 ChrilSite</footer>
     </div>
 </div>
-
-
-<div id="toast">Non disponibile</div>
 
 
 <audio id="bg-audio" loop>
@@ -249,17 +221,15 @@ const icon = audioBtn.querySelector("i");
 
 let audioOn = true;
 
-
 function startAudio() {
-    if(audio.paused){
+    if (audio.paused) {
         audio.volume = 0.4;
-        audio.play().catch(()=>{});
+        audio.play().catch(() => {});
     }
 }
 
-
 function enterSite() {
-    startAudio(); 
+    startAudio();
     intro.style.opacity = "0";
     setTimeout(() => {
         intro.style.display = "none";
@@ -267,13 +237,13 @@ function enterSite() {
     }, 800);
 }
 
-
 intro.addEventListener("click", enterSite);
-document.addEventListener("keydown", e => { if(e.key==="Enter") enterSite(); });
+document.addEventListener("keydown", e => {
+    if (e.key === "Enter") enterSite();
+});
 
-
-audioBtn.addEventListener("click", ()=>{
-    if(audioOn){
+audioBtn.addEventListener("click", () => {
+    if (audioOn) {
         audio.pause();
         icon.className = "fa-solid fa-volume-xmark";
     } else {
@@ -281,18 +251,6 @@ audioBtn.addEventListener("click", ()=>{
         icon.className = "fa-solid fa-volume-high";
     }
     audioOn = !audioOn;
-});
-
-
-const logBtn = document.getElementById("logmaster-btn");
-const toast = document.getElementById("toast");
-
-logBtn.addEventListener("click", (e)=>{
-    e.preventDefault(); 
-    toast.style.animation = "toastIn 0.5s forwards";
-    setTimeout(()=>{
-        toast.style.animation = "toastOut 0.5s forwards";
-    }, 2000); 
 });
 </script>
 
