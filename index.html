@@ -1,258 +1,222 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chril</title>
-
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
-      rel="stylesheet">
-
+<title>LogMaster Dashboard</title>
+<link rel="icon" href="logo.png" type="image/png">
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#0d0d0d;color:#fff;overflow-x:hidden;}
+a{text-decoration:none;}
+
+.hero-container{
+  position:relative;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#0d0d0d;
+  overflow:hidden;
 }
-
-body {
-    background: #2b2b2b;
-    color: white;
-    overflow: hidden;
+.hero{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  max-width:1200px;
+  width:90%;
+  background:rgba(255,255,255,0.03);
+  padding:50px;
+  border-radius:20px;
+  box-shadow:0 0 50px rgba(0,255,255,0.2);
+  flex-wrap:wrap;
 }
-
-
-#intro {
-    position: fixed;
-    inset: 0;
-    background: #2b2b2b;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    z-index: 10;
+.hero-text{
+  flex:1;
+  padding-right:50px;
 }
-
-#intro h1 {
-    font-size: 3rem;
-    letter-spacing: 6px;
-    animation: introIn 1s ease forwards;
+.hero-text h1{
+  font-size:3rem;
+  color:#00f0ff;
+  margin-bottom:20px;
 }
-
-#intro p {
-    opacity: 0.6;
-    letter-spacing: 2px;
-    animation: pulse 1.5s infinite;
+.hero-text h1 .static{margin-right:10px;}
+.hero-text h1 .dynamic{border-right:2px solid #00f0ff;white-space:nowrap;overflow:hidden;}
+.hero-text p{
+  font-size:1.2rem;
+  color:#aaa;
+  line-height:1.5;
+  margin-bottom:40px;
 }
-
-@keyframes introIn {
-    from { transform: translateY(-40px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+.buttons{display:flex;gap:20px;}
+.btn{
+  padding:15px 30px;
+  border-radius:10px;
+  font-weight:bold;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:all 0.3s ease;
+  border:none;
+  background:linear-gradient(45deg,#00f0ff,#0099ff);
+  color:#000;
+  box-shadow:0 5px 20px rgba(0,255,255,0.4);
 }
-
-@keyframes pulse {
-    0%,100% { opacity: 0.4; }
-    50% { opacity: 1; }
+.btn:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 8px 30px rgba(0,255,255,0.6);}
+.hero-logo{
+  flex:1;
+  display:flex;
+  justify-content:flex-end;
 }
-
-
-#site {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transform: scale(1.05);
-    pointer-events: none;
+.hero-logo img{
+  max-width:400px;
+  width:100%;
+  animation:float 4s ease-in-out infinite;
+  transition:transform 0.3s ease;
 }
+.hero-logo img:hover{transform:scale(1.08) rotate(-3deg);}
+@keyframes float{0%,100%{transform:translateY(0px)}50%{transform:translateY(-25px)}}
 
-#site.active {
-    opacity: 1;
-    transform: scale(1);
-    pointer-events: all;
-    transition: all 1s ease;
+.section{
+  padding:80px 20px;
+  max-width:1200px;
+  margin:0 auto;
+  opacity:0;
+  transform:translateY(50px);
+  transition:all 1s ease;
 }
-
-.container {
-    width: 100%;
-    max-width: 420px;
-    padding: 40px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 25px;
+.section.visible{
+  opacity:1;
+  transform:translateY(0);
 }
-
-
-.logo {
-    width: 140px;
-    animation: logoIn 1s ease forwards;
+.section h2{
+  font-size:2.5rem;
+  color:#00f0ff;
+  text-align:center;
+  margin-bottom:60px;
 }
-
-@keyframes logoIn {
-    from { transform: translateY(-30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+.container{
+  display:flex;
+  justify-content:space-around;
+  flex-wrap:wrap;
+  gap:30px;
 }
-
-h2 {
-    letter-spacing: 3px;
+.box{
+  flex:1 1 250px;
+  background:rgba(255,255,255,0.03);
+  padding:30px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 0 40px rgba(0,255,255,0.2);
+  transition:all 0.3s ease;
 }
+.box:hover{transform:scale(1.05);}
+.box h3{font-size:1.5rem;color:#00f0ff;margin-bottom:15px;}
+.box p{font-size:1.2rem;color:#aaa;line-height:1.4;}
 
-
-.links {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.links a {
-    background: #3a3a3a;
-    border: 1px solid #555;
-    padding: 14px;
-    border-radius: 10px;
-    color: white;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    opacity: 0;
-    animation: linkIn 0.6s ease forwards;
-}
-
-.links a:nth-child(1) { animation-delay: 0.4s; }
-.links a:nth-child(2) { animation-delay: 0.6s; }
-
-@keyframes linkIn {
-    from { transform: translateY(20px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
-.links a:hover {
-    background: white;
-    color: #2b2b2b;
-    transform: translateY(-2px);
-}
-
-
-#audio-btn {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: #3a3a3a;
-    border: 1px solid #555;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    opacity: 0;
-    transition: 0.3s;
-}
-
-#audio-btn i {
-    font-size: 1.1rem;
-}
-
-#site.active #audio-btn {
-    opacity: 1;
-}
-
-
-footer {
-    font-size: 0.8rem;
-    opacity: 0.6;
+@media(max-width:900px){
+  .hero{flex-direction:column-reverse;text-align:center;padding:30px}
+  .hero-text{padding-right:0}
+  .hero-logo{justify-content:center;margin-bottom:30px}
+  .hero-text h1{font-size:2.5rem}
+  .hero-text p{font-size:1rem}
+  .container{flex-direction:column;align-items:center}
 }
 </style>
 </head>
-
 <body>
-
-
-<div id="intro">
-    <h1>CHRIL</h1>
-    <p>PRESS ENTER</p>
+<div class="hero-container">
+  <div class="hero">
+    <div class="hero-text">
+      <h1>
+        <span class="static">Stay in control.</span>
+        <span class="dynamic" id="dynamic-text">Track every action.</span>
+      </h1>
+      <p>LogMaster keeps a vigilant eye on your Discord servers, recording every event so you stay informed and in control.</p>
+      <div class="buttons">
+        <a href="https://discord.com/oauth2/authorize?client_id=1416393754553614496&permissions=128&integration_type=0&scope=bot" target="_blank"><button class="btn">Invite Bot</button></a>
+        <a href="https://discord.gg/ucDB6hbS5K" target="_blank"><button class="btn">Support Server</button></a>
+      </div>
+    </div>
+    <div class="hero-logo">
+      <img src="logo2.png" alt="LogMaster Logo">
+    </div>
+  </div>
 </div>
 
-
-<div id="site">
-
-    <div id="audio-btn">
-        <i class="fa-solid fa-volume-high"></i>
-    </div>
-
-    <div class="container">
-        <img src="logochril.png" class="logo" alt="Chril Logo">
-        <h2>Chril Site</h2>
-
-        <div class="links">
-          
-            <a href="https://logmastersite.vercel.app/" target="_blank" rel="noopener noreferrer">
-                <i class="fa-solid fa-globe"></i> LogMaster
-            </a>
-
-     
-            <a href="https://discord.gg/6w6CA4UR" target="_blank" rel="noopener noreferrer">
-                <i class="fa-brands fa-discord"></i> Raxus
-            </a>
-        </div>
-
-        <footer>© 2026 ChrilSite</footer>
-    </div>
+<div class="section" id="stats">
+  <h2>Live Server Stats</h2>
+  <div class="container">
+    <div class="box"><h3>Servers Using LogMaster</h3><p id="server-count">0</p></div>
+    <div class="box"><h3>Total Logs Tracked</h3><p id="logs-count">0</p></div>
+    <div class="box"><h3>Commands Executed</h3><p id="commands-count">0</p></div>
+  </div>
 </div>
 
-
-<audio id="bg-audio" loop>
-    <source src="audio.mp3" type="audio/mpeg">
-</audio>
+<div class="section" id="features">
+  <h2>Bot Features</h2>
+  <div class="container">
+    <div class="box"><h3>Audit Logs</h3><p>Track every event in your server with complete details.</p></div>
+    <div class="box"><h3>Detailed Records</h3><p>Access every log with full information and timestamps.</p></div>
+    <div class="box"><h3>Quick Access</h3><p>Find and filter logs instantly through the dashboard or commands.</p></div>
+  </div>
+</div>
 
 <script>
-const intro = document.getElementById("intro");
-const site = document.getElementById("site");
-const audio = document.getElementById("bg-audio");
-const audioBtn = document.getElementById("audio-btn");
-const icon = audioBtn.querySelector("i");
-
-let audioOn = true;
-
-function startAudio() {
-    if (audio.paused) {
-        audio.volume = 0.4;
-        audio.play().catch(() => {});
-    }
+// TYPING EFFECT
+const texts=["Track every action.","Monitor every move.","Secure every step."];
+let count=0,currentText="",isDeleting=false;
+const speed=100,deleteSpeed=50,delay=1500;
+const dynamicText=document.getElementById('dynamic-text');
+function type(){
+  const fullText=texts[count];
+  if(isDeleting){currentText=fullText.substring(0,currentText.length-1);}
+  else{currentText=fullText.substring(0,currentText.length+1);}
+  dynamicText.textContent=currentText;
+  if(!isDeleting && currentText===fullText){setTimeout(()=>{isDeleting=true;type();},delay);}
+  else if(isDeleting && currentText===''){isDeleting=false;count=(count+1)%texts.length;setTimeout(type,500);}
+  else{setTimeout(type,isDeleting?deleteSpeed:speed);}
 }
+document.addEventListener('DOMContentLoaded',()=>type());
 
-function enterSite() {
-    startAudio();
-    intro.style.opacity = "0";
-    setTimeout(() => {
-        intro.style.display = "none";
-        site.classList.add("active");
-    }, 800);
-}
-
-intro.addEventListener("click", enterSite);
-document.addEventListener("keydown", e => {
-    if (e.key === "Enter") enterSite();
+// SCROLL ANIMATION
+const sections=document.querySelectorAll('.section');
+window.addEventListener('scroll',()=>{
+  const trigger=window.innerHeight*0.8;
+  sections.forEach(sec=>{
+    const top=sec.getBoundingClientRect().top;
+    if(top<trigger){sec.classList.add('visible');}
+  });
 });
 
-audioBtn.addEventListener("click", () => {
-    if (audioOn) {
-        audio.pause();
-        icon.className = "fa-solid fa-volume-xmark";
-    } else {
-        audio.play();
-        icon.className = "fa-solid fa-volume-high";
+// FETCH DATI DAL BOT
+async function updateStats() {
+  try {
+    const res = await fetch("https://logmasterweb.onrender.com/api/stats");
+    const data = await res.json();
+    
+    function animateNumber(element, value, duration=1000){
+      let start=0;
+      const increment=value/(duration/16);
+      function step(){
+        start+=increment;
+        if(start<value){
+          element.textContent=Math.floor(start).toLocaleString();
+          requestAnimationFrame(step);
+        } else element.textContent=value.toLocaleString();
+      }
+      step();
     }
-    audioOn = !audioOn;
-});
+
+    animateNumber(document.getElementById("server-count"), data.servers);
+    animateNumber(document.getElementById("logs-count"), data.logs);
+    animateNumber(document.getElementById("commands-count"), data.commands);
+
+  } catch(err){
+    console.error("Errore fetch stats:", err);
+  }
+}
+updateStats();
+setInterval(updateStats,10000);
 </script>
-
 </body>
 </html>
